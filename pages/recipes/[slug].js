@@ -33,11 +33,12 @@ export default function OneRecipe({ data, preview }) {
   })
 
   const [likes, setLikes] = useState(data?.recipe?.likes)
+
   const addLike = async () => {
     const res = await fetch('/api/likes', {
       method: 'POST',
       body: JSON.stringify({ _id: recipe._id }),
-    }).catch((e) => console.error(e))
+    }).catch((error) => console.log(error))
 
     const data = await res.json()
 
@@ -68,7 +69,7 @@ export default function OneRecipe({ data, preview }) {
           ))}
         </ul>
         <h2>Instructions</h2>
-        <PortableText blocks={recipe?.instructions} />
+        {recipe?.instructions && <PortableText blocks={recipe?.instructions} />}
       </section>
     </article>
   )
