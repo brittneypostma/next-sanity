@@ -1,9 +1,26 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100vh;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: skyblue;
+  font-size: clamp(1rem, calc(1rem + 0.5vw), 1.5rem);
+}
+
+body > * {
+  padding: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 a {
@@ -13,4 +30,97 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+article {
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  padding: 1rem 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.recipes-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 600px) {
+  .recipes-list {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  }
+}
+
+img {
+  border: 4px solid #111;
+  min-height: 500px;
+  max-height: 500px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.recipe-card {
+  background: #fefefe;
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr);
+  font-size: 1.5rem;
+}
+
+.ingredients {
+  display: grid;
+  gap: 1rem;
+}
+
+.ingredient {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.diagonal {
+  font-variant-numeric: diagonal-fractions;
+  font-family: 'Fira Sans';
+}
+
+h2 {
+  font-size: clamp(1.5rem, calc(1.5rem + 1vw), 2rem);
+}
+
+.likes {
+  justify-self: start;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+  padding: 0.5rem;
+  cursor: pointer;
+  background: #fefefe;
+  border-radius: 0.5rem;
+  border: 1px solid #444;
+  font-size: clamp(1rem, calc(1rem + 1vw), 1.5rem);
 }
