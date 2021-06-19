@@ -54,21 +54,22 @@ export default function OneRecipe({ data, preview }) {
       </button>
       <section className="recipe-card">
         <img src={urlFor(recipe?.mainImage)} alt={recipe.name} />
+        <h2 style={{ marginBottom: '1rem', borderBottom: '2px solid black' }}>
+          Ingredients
+        </h2>
         <ul className="ingredients">
           {recipe.ingredient?.map((ingredient) => (
             <li key={ingredient._key} className="ingredient">
               <span>{ingredient?.wholeNumber}</span>
-              <span className="diagonal">
-                {ingredient?.fraction}
-                {/* <sup>{ingredient?.fraction.slice(0, 1)}</sup>/
-                  <sub>{ingredient?.fraction.slice(-1)}</sub> */}
-              </span>
+              <span className="diagonal">{ingredient?.fraction}</span>
               <span>{ingredient?.unit}</span>
               <span>{ingredient?.ingredient?.name}</span>
             </li>
           ))}
         </ul>
-        <h2>Instructions</h2>
+        <h2 style={{ marginTop: '1rem', borderBottom: '2px solid black' }}>
+          Instructions
+        </h2>
         {recipe?.instructions && <PortableText blocks={recipe?.instructions} />}
       </section>
     </article>
