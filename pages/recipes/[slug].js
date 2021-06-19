@@ -1,10 +1,11 @@
+import { useState } from 'react'
+import { useRouter } from 'next-router'
 import {
   sanityClient,
   urlFor,
   usePreviewSubscription,
   PortableText,
 } from '../../lib/sanity'
-import { useState } from 'react'
 
 const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
   _id,
@@ -25,12 +26,13 @@ const recipeQuery = `*[_type == "recipe" && slug.current == $slug][0]{
 }`
 
 export default function OneRecipe({ data, preview }) {
+  // side by side you can see live preview of stuff changed in sanity studio
   const { data: recipe } = usePreviewSubscription(recipeQuery, {
     params: { slug: data.recipe?.slug.current },
     initialData: data,
     enabled: preview,
   })
-  // const { recipe } = data
+
   const [likes, setLikes] = useState(data?.recipe?.likes)
   const addLike = async () => {
     const res = await fetch('/api/likes', {
@@ -41,6 +43,11 @@ export default function OneRecipe({ data, preview }) {
     const data = await res.json()
 
     setLikes(data.likes)
+  }
+
+  const router = useRouter()
+  if (router.isFallback) {
+    return <h1 style="text-align: center;">Loading...</h1>
   }
   return (
     <article>
