@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import {
   sanityClient,
   urlFor,
@@ -45,10 +44,7 @@ export default function OneRecipe({ data, preview }) {
     setLikes(data.likes)
   }
 
-  const router = useRouter()
-  if (router.isFallback) {
-    return <h1 style="text-align: center;">Loading...</h1>
-  }
+  if (!data) return <h1 style="text-align: center;">Loading...</h1>
   return (
     <article>
       <h1>{recipe.name}</h1>
