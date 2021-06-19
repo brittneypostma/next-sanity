@@ -90,21 +90,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  // slug matches with file name [slug].js
   const { slug } = params
+  // 2nd argument matches slug param from groq query
   const recipe = await sanityClient.fetch(recipeQuery, { slug })
   return { props: { data: { recipe }, preview: true } }
 }
-
-// export async function getStaticProps({ params }) {
-//   // slug matches with file name [slug].js
-//   const { slug } = params
-//   // 2nd argument matches slug param from groq query
-//   const recipe = await sanityClient.fetch(recipeQuery, { slug })
-//   return {
-//     props: {
-//       data: {
-//         recipe,
-//       },
-//     },
-//   }
-// }
